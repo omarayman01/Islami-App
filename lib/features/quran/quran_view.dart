@@ -47,7 +47,8 @@ class _QuranViewState extends State<QuranView> {
                             children: [
                               Text(
                                 '${nAyat[index]}',
-                                style: Theme.of(context).textTheme.bodyMedium,
+                                style:
+                                    Theme.of(context).textTheme.headlineMedium,
                               ),
                               GestureDetector(
                                 onTap: () => Navigator.pushNamed(
@@ -55,7 +56,9 @@ class _QuranViewState extends State<QuranView> {
                                     arguments: index),
                                 child: Text(
                                   suraNames[index],
-                                  style: Theme.of(context).textTheme.bodyMedium,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineMedium,
                                 ),
                               )
                             ]);

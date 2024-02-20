@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:islami/app_theme.dart';
+import 'package:islami/features/settings/settings.dart';
+import 'package:provider/provider.dart';
 
 class SebhaView extends StatefulWidget {
   const SebhaView({super.key});
@@ -20,7 +21,9 @@ class _SebhaViewState extends State<SebhaView> {
           // mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Image(image: AssetImage('assets/images/head_sebha_logo.png')),
+            Image(
+                image: AssetImage(
+                    Provider.of<SettingsProvider>(context).sebha2Ground)),
             GestureDetector(
                 onTap: () {
                   if (cnt < 33) {
@@ -35,8 +38,9 @@ class _SebhaViewState extends State<SebhaView> {
                   }
                   setState(() {});
                 },
-                child: const Image(
-                    image: AssetImage('assets/images/body_sebha_logo.png'))),
+                child: Image(
+                    image: AssetImage(
+                        Provider.of<SettingsProvider>(context).sebhaGround))),
             const SizedBox(height: 43),
             Text('عدد التسبيحات',
                 style: Theme.of(context).textTheme.headlineMedium),
@@ -46,7 +50,9 @@ class _SebhaViewState extends State<SebhaView> {
               width: 60,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                color: AppTheme.primarylight.withOpacity(0.5),
+                color: Provider.of<SettingsProvider>(context)
+                    .ground2Color
+                    .withOpacity(0.5),
               ),
               child: Center(
                   child: Text('$cnt',
@@ -58,7 +64,7 @@ class _SebhaViewState extends State<SebhaView> {
               width: 137,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(32),
-                color: AppTheme.primarylight,
+                color: Provider.of<SettingsProvider>(context).sebhagroundColor,
               ),
               child: GestureDetector(
                 onTap: () {
@@ -76,7 +82,10 @@ class _SebhaViewState extends State<SebhaView> {
                 },
                 child: Center(
                     child: Text(tasbeh[ind],
-                        style: Theme.of(context).textTheme.bodyMedium)),
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge!
+                            .copyWith(fontWeight: FontWeight.w500))),
               ),
             )
           ],

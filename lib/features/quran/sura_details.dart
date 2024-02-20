@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:islami/app_theme.dart';
 import 'package:islami/constants.dart';
 import 'package:islami/features/quran/sura_label.dart';
+import 'package:islami/features/settings/settings.dart';
 import 'package:islami/progress_indicator.dart';
+import 'package:provider/provider.dart';
 
 class SuraDetailsView extends StatefulWidget {
   const SuraDetailsView({super.key});
@@ -20,9 +22,10 @@ class _SuraDetailsViewState extends State<SuraDetailsView> {
     final int args = ModalRoute.of(context)!.settings.arguments as int;
     loadSura(args);
     return Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('assets/images/default_bg.png'),
+              image:
+                  AssetImage(Provider.of<SettingsProvider>(context).bckGround),
               fit: BoxFit.fill),
         ),
         child: Scaffold(
@@ -40,7 +43,9 @@ class _SuraDetailsViewState extends State<SuraDetailsView> {
                   width: double.infinity,
                   height: 550,
                   decoration: BoxDecoration(
-                      color: AppTheme.white.withOpacity(0.5),
+                      color: Provider.of<SettingsProvider>(context)
+                          .groundColor
+                          .withOpacity(0.6),
                       borderRadius: BorderRadius.circular(24)),
                   child: Column(
                     children: [
